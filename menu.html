@@ -1,0 +1,42 @@
+<div id='admin_menu' class='mall_menu'>
+	<div class='menu_lists'>   
+		<div class='panel-group' class='menu_parent'>
+		<!-- 每个模块都是有两张图片不同颜色的照片，其中一张可见，另一张不可见  -->
+				<div class='panel'>
+					<a href="#/" class='menu_list'><img src="__PUBLIC__/img/common/mallinfo_i_active.png" class='img_active img_show'><img src="__PUBLIC__/img/common/mallinfo_i_common.png" class='img_common img_hide'><span>商场信息</span></a>
+				</div>
+ <!--  只有一个模块处于激活状态，其他的模块都是非激活，此时的照片都是common状态 -->
+				<div class='panel'>
+					<a href="#/mall" class='menu_list'><img src="__PUBLIC__/img/common/mall_i_active.png" class='img_active img_hide'><img src="__PUBLIC__/img/common/mall_i_common.png" class='img_common img_show'><span>商场管理</span></a>
+				</div>
+
+				<div class='panel'>
+					<a href="#/stores" class='menu_list'><img src="__PUBLIC__/img/common/storelist_i_active.png" class='img_active img_hide'><img src="__PUBLIC__/img/common/storelist_i_common.png" class='img_common img_show'><span>店铺管理</span></a>
+				</div>
+
+				<div class='panel'>
+					<a href="#/users" class='menu_list'><img src="__PUBLIC__/img/common/userlist_i_active.png" class='img_active img_hide'><img src="__PUBLIC__/img/common/userlist_i_common.png" class='img_common img_show'><span>用户管理</span></a>
+				</div>
+
+				<div class='panel'>
+					<a href="#/data" class='menu_list'><img src="__PUBLIC__/img/common/data_i_active.png" class='img_active img_hide'><img src="__PUBLIC__/img/common/data_i_common.png" class='img_common img_show'><span>数据中心</span></a>
+				</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/javascript">
+// 给每个模块绑定点击事件 链式操作
+$(document).ready(function($) {
+	$("a.menu_list").on('click',function(){
+		//移除当前的active类
+		$(this).parents('.menu_lists').find("a.active").removeClass('active');
+		$(this).parents('.menu_lists').find("img.img_active").removeClass('img_show').addClass('img_hide');//隐藏之前显示的照片
+		$(this).parents('.menu_lists').find("img.img_common").removeClass('img_hide').addClass('img_show');//显示之前隐藏的照片
+		//为当前的选中的点击的那个模块添加active类，同时显示带有背景颜色的照片
+		$(this).addClass('active').find('img').eq(0).removeClass('img_hide').addClass('img_show');
+		//为当前的选中的点击的那个模块添加active类，同时隐藏第二张之前显示的照片
+		$(this).addClass('active').find('img').eq(1).removeClass('img_show').addClass('img_hide');
+	});
+});
+</script>
